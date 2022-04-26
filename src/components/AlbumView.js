@@ -1,7 +1,8 @@
 // These components will be making separate API calls from the app
 // component to serve specific data about a given album
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import ButtonStyleContext from "./ButtonStyleContext";
 
 function AlbumView() {
     const navigate = useNavigate();
@@ -23,16 +24,18 @@ function AlbumView() {
     const renderSongs = justSongs.map((song, i) => {
         return (
             <div key={i}>
-                <p>{song.trackName}</p>
+                <p className="list_style">{song.trackName}</p>
             </div>
         )
     })
 
+    const buttonStyling = React.useContext(ButtonStyleContext)
+
     const navButtons = () => {
         return(
             <div>
-                <button onClick={() => navigate(-1)}>Back</button>
-                <button onClick={() => navigate('/')}>Home</button>
+                <button style={buttonStyling} onClick={() => navigate(-1)}>Back</button>
+                <button style={buttonStyling} onClick={() => navigate('/')}>Home</button>
             </div>
         )
     }
